@@ -23,5 +23,8 @@ export function countSheep(arr) {
 
 export function hasMPostCode(person) {
   if (person === undefined) throw new Error("person is required");
-  // Your code here!
+  return (
+    person.address.postCode.charAt(0) === "M" &&
+    !isNaN(person.address.postCode.charAt(1))
+  );
 }
