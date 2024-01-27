@@ -6,11 +6,7 @@ export function findSmallNums(nums) {
 export function findNamesBeginningWith(names, char) {
   if (!names) throw new Error("names is required");
   if (!char) throw new Error("char is required");
-  let namesBeginningWith = [];
-  names.forEach((name) => {
-    if (name.charAt(0) === char) namesBeginningWith.push(name);
-  });
-  return namesBeginningWith;
+  return names.filter((name) => name.charAt(0) === char);
 }
 
 export function findVerbs(words) {
