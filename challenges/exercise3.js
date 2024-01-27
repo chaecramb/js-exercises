@@ -2,11 +2,9 @@ export function findSmallNums(nums) {
   if (!nums) throw new Error("nums is required");
 
   let smallNums = [];
-  for (let i = 0; i < nums.length; i++) {
-    if (nums[i] < 1) {
-      smallNums.push(nums[i]);
-    }
-  }
+  nums.forEach((num) => {
+    if (num < 1) smallNums.push(num);
+  });
   return smallNums;
 }
 
