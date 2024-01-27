@@ -11,11 +11,7 @@ export function findNamesBeginningWith(names, char) {
 
 export function findVerbs(words) {
   if (!words) throw new Error("words is required");
-  let verbs = [];
-  words.forEach((word) => {
-    if (word.slice(0, 3) === "to ") verbs.push(word);
-  });
-  return verbs;
+  return words.filter((word) => word.startsWith("to "));
 }
 
 export function getIntegers(nums) {
