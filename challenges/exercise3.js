@@ -39,9 +39,7 @@ export function getIntegers(nums) {
 export function getCities(users) {
   if (!users) throw new Error("users is required");
   let cities = [];
-  for (let i = 0; i < users.length; i++) {
-    cities.push(users[i].data.city.displayName);
-  }
+  users.forEach((user) => cities.push(user.data.city.displayName));
   return cities;
 }
 
