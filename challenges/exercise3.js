@@ -32,13 +32,9 @@ export function getSquareRoots(nums) {
 export function findSentencesContaining(sentences, str) {
   if (!sentences) throw new Error("sentences is required");
   if (!str) throw new Error("str is required");
-  let sentencesContaining = [];
-  sentences.forEach((sentence) => {
-    if (sentence.toLowerCase().includes(str.toLowerCase())) {
-      sentencesContaining.push(sentence);
-    }
-  });
-  return sentencesContaining;
+  return sentences.filter((sentence) =>
+    sentence.toLowerCase().includes(str.toLowerCase())
+  );
 }
 
 export function getLongestSides(triangles) {
