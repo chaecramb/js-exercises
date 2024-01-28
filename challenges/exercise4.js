@@ -4,13 +4,20 @@ export const findNextNumber = (nums, n) => {
   const indexOfN = nums.indexOf(n);
   // Assign next number, or null if the index plus 1 is out of range
   const nextNumber = nums[indexOfN + 1] || null;
-  // return nextNumber or null if n was not found
+  // Return nextNumber or null if n was not found
   return indexOfN != -1 ? nextNumber : null;
 };
 
 export const count1sand0s = (str) => {
   if (str === undefined) throw new Error("str is required");
-  // Your code here!
+  return str.split("").reduce(
+    (result, n) => {
+      if (n === "1") result[1]++;
+      if (n === "0") result[0]++;
+      return result;
+    },
+    { 1: 0, 0: 0 }
+  );
 };
 
 export const reverseNumber = (n) => {
