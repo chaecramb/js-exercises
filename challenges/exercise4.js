@@ -40,7 +40,7 @@ export const sumArrays = (arrs) => {
 
 export const arrShift = (arr) => {
   if (arr === undefined) throw new Error("arr is required");
-  if (arr.length === 1) return arr;
+  if (arr.length <= 1) return arr;
   const first = arr.shift();
   const last = arr.pop();
   return [last, ...arr, first];
