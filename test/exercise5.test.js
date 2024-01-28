@@ -40,6 +40,10 @@ describe("isValidDNA", () => {
       isValidDNA(1);
     }).toThrow("str is required");
   });
+
+  test("return false if string is empty", () => {
+    expect(sumMultiples("")).toBe(false);
+  });
 });
 
 describe("createMatrix", () => {
