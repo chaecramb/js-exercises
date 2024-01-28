@@ -1,4 +1,8 @@
-import { sumMultiples } from "../challenges/exercise5";
+import {
+  sumMultiples,
+  createMatrix,
+  areWeCovered,
+} from "../challenges/exercise5";
 
 describe("sumMultiples", () => {
   test("it throws an error if not passed an array", () => {
