@@ -15,7 +15,7 @@ export function shoppingList(list, newItem) {
 
 export function highestNumber(numbers) {
   if (!numbers) throw new Error("numbers are required");
-  // Your solution using the spread operator here!
+  return Math.max(...numbers);
 }
 
 export function splitThatString(string) {
