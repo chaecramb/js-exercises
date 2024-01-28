@@ -4,6 +4,7 @@ import {
   areWeCovered,
   isValidDNA,
   getComplementaryDNA,
+  isItPrime,
 } from "../challenges/exercise5";
 
 describe("sumMultiples", () => {
@@ -75,6 +76,40 @@ describe("getComplementaryDNA", () => {
   test("returns expected complementary pairs", () => {
     expect(getComplementaryDNA("ACTG")).toBe("TGAC");
     expect(getComplementaryDNA("CCGG")).toBe("GGCC");
+  });
+});
+
+describe("isItPrime", () => {
+  test("throws error if no argument passed", () => {
+    expect(() => {
+      isItPrime();
+    }).toThrow("n is required");
+  });
+
+  test("returns true for prime numbers", () => {
+    expect(isItPrime(2)).toBe(true);
+    expect(isItPrime(3)).toBe(true);
+    expect(isItPrime(5)).toBe(true);
+    expect(isItPrime(7)).toBe(true);
+  });
+
+  test("returns false for non-prime numbers", () => {
+    expect(isItPrime(1)).toBe(false);
+    expect(isItPrime(4)).toBe(false);
+    expect(isItPrime(6)).toBe(false);
+    expect(isItPrime(8)).toBe(false);
+    expect(isItPrime(9)).toBe(false);
+  });
+
+  test("works with large inputs", () => {
+    expect(isItPrime(13)).toBe(true);
+    expect(isItPrime(17)).toBe(true);
+    expect(isItPrime(997)).toBe(true);
+    expect(isItPrime(10007)).toBe(true);
+
+    expect(isItPrime(15)).toBe(false);
+    expect(isItPrime(21)).toBe(false);
+    expect(isItPrime(1001)).toBe(false);
   });
 });
 
