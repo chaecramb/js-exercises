@@ -33,7 +33,7 @@ describe("sumMultiples", () => {
 });
 
 describe("isValidDNA", () => {
-  it("throw an error when not passed a string", () => {
+  test("throw an error when not passed a string", () => {
     expect(() => {
       isValidDNA();
     }).toThrow("str is required");
@@ -114,10 +114,45 @@ describe("isItPrime", () => {
 });
 
 describe("createMatrix", () => {
-  it("returns a matrix of 1 * 1 when passed 1", () => {
+  test("throws if n not provided", () => {
+    expect(() => createMatrix()).toThrow("n is required");
+  });
+
+  test("throws if fill not provided", () => {
+    expect(() => createMatrix(3)).toThrow("fill is required");
+  });
+
+  test("returns a matrix of 1 * 1 when passed 1", () => {
     const result = createMatrix(1, "foo");
     const expected = [["foo"]];
-    expect(result.toEqual(expected));
+    expect(result).toEqual(expected);
+  });
+
+  test("returns expected matrix", () => {
+    expect(createMatrix(3, "x")).toEqual([
+      ["x", "x", "x"],
+      ["x", "x", "x"],
+      ["x", "x", "x"],
+    ]);
+
+    expect(createMatrix(3, 123)).toEqual([
+      [123, 123, 123],
+      [123, 123, 123],
+      [123, 123, 123],
+    ]);
+
+    expect(createMatrix(5, "abcd")).toEqual([
+      ["abcd", "abcd", "abcd", "abcd", "abcd"],
+      ["abcd", "abcd", "abcd", "abcd", "abcd"],
+      ["abcd", "abcd", "abcd", "abcd", "abcd"],
+      ["abcd", "abcd", "abcd", "abcd", "abcd"],
+      ["abcd", "abcd", "abcd", "abcd", "abcd"],
+    ]);
+  });
+
+  test("returns empty matrix when n is 0", () => {
+    const result = createMatrix(0, "bar");
+    expect(result).toEqual([]);
   });
 });
 
