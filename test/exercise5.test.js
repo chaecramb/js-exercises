@@ -42,7 +42,22 @@ describe("isValidDNA", () => {
   });
 
   test("return false if string is empty", () => {
-    expect(sumMultiples("")).toBe(false);
+    expect(isValidDNA("")).toBe(false);
+  });
+
+  test("return false if string is not valid DNA", () => {
+    expect(isValidDNA("hi there")).toBe(false);
+    expect(isValidDNA("TAGOCA")).toBe(false);
+    expect(isValidDNA("AGT1C")).toBe(false);
+    expect(isValidDNA("AGT-C")).toBe(false);
+    expect(isValidDNA("AGT_C")).toBe(false);
+    expect(isValidDNA("AGT.C")).toBe(false);
+  });
+
+  test("return true if string is valid DNA", () => {
+    expect(isValidDNA("TAGCA")).toBe(true);
+    expect(isValidDNA("AGTC")).toBe(true);
+    expect(isValidDNA("AGAATCCGGTC")).toBe(true);
   });
 });
 

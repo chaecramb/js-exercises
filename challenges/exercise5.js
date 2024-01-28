@@ -28,6 +28,9 @@ export const sumMultiples = (arr) => {
 export const isValidDNA = (str) => {
   if (!(typeof str === "string")) throw new Error("str is required");
   if (str.length === 0) return false;
+  return str.split("").every((n) => {
+    return ["C", "G", "T", "A"].includes(n);
+  });
 };
 
 /**
