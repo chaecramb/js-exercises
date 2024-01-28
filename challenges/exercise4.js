@@ -27,9 +27,15 @@ export const reverseNumber = (n) => {
 
 export const sumArrays = (arrs) => {
   if (arrs === undefined) throw new Error("arrs is required");
-  return arrs.reduce((total, arr) => {
-    return total + arr.reduce((subtotal, n) => subtotal + n, 0);
-  }, 0);
+  const recursiveSum = (arr) => {
+    return arr.reduce((total, n) => {
+      if (Array.isArray(n)) {
+        return total + recursiveSum(n);
+      }
+      return total + n;
+    }, 0);
+  };
+  return recursiveSum(arrs);
 };
 
 export const arrShift = (arr) => {
