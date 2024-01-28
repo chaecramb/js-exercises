@@ -3,6 +3,7 @@ import {
   createMatrix,
   areWeCovered,
   isValidDNA,
+  getComplementaryDNA,
 } from "../challenges/exercise5";
 
 describe("sumMultiples", () => {
@@ -58,6 +59,22 @@ describe("isValidDNA", () => {
     expect(isValidDNA("TAGCA")).toBe(true);
     expect(isValidDNA("AGTC")).toBe(true);
     expect(isValidDNA("AGAATCCGGTC")).toBe(true);
+  });
+});
+
+describe("getComplementaryDNA", () => {
+  test("throws error if no str passed", () => {
+    expect(() => getComplementaryDNA()).toThrow("str is required");
+    expect(() => getComplementaryDNA(123)).toThrow("str is required");
+  });
+
+  test("throws error if invalid str is passed", () => {
+    expect(() => getComplementaryDNA("XYZ")).toThrow("str is not valid DNA");
+  });
+
+  test("returns expected complementary pairs", () => {
+    expect(getComplementaryDNA("ACTG")).toBe("TGAC");
+    expect(getComplementaryDNA("CCGG")).toBe("GGCC");
   });
 });
 
