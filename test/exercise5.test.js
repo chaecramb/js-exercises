@@ -24,3 +24,21 @@ describe("sumMultiples", () => {
     expect(sumMultiples([1, 40.0, 8.05, 12.0])).toBe(52);
   });
 });
+
+describe("createMatrix", () => {
+  it("returns a matrix of 1 * 1 when passed 1", () => {
+    const result = createMatrix(1, "foo");
+    const expected = [["foo"]];
+    expect(result.toEqual(expected));
+  });
+});
+
+test("returns false if there are staff but < 3 not scheduled to work", () => {
+  const staff = [
+    { name: "gary", rota: ["Monday", "Tuesday"] },
+    { name: "paul", rota: ["Monday", "Tuesday"] },
+    { name: "sally", rota: ["Monday", "Tuesday"] },
+    { name: "jess", rota: ["Monday", "Tuesday"] },
+  ];
+  expect(areWeCovered(staff, "Wednesday")).toBe(false);
+});
