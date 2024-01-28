@@ -65,6 +65,25 @@ export const createRange = (start, end, step) => {
 export const getScreentimeAlertList = (users, date) => {
   if (users === undefined) throw new Error("users is required");
   if (date === undefined) throw new Error("date is required");
+  const filteredUsers = users.filter((user) => {
+    return (
+      user.screenTime
+        .filter((screenTime) => {
+          return screenTime.date === date;
+        })
+        .reduce((acc, cur) => {
+          return (
+            acc +
+            Object.values(cur.usage).reduce((acc, cur) => {
+              return acc + cur;
+            }, 0)
+          );
+        }, 0) > 100
+    );
+  });
+  return filteredUsers.map((user) => {
+    return user.username;
+  });
 };
 
 /**
