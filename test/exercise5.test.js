@@ -156,12 +156,43 @@ describe("createMatrix", () => {
   });
 });
 
-test("returns false if there are staff but < 3 not scheduled to work", () => {
-  const staff = [
-    { name: "gary", rota: ["Monday", "Tuesday"] },
-    { name: "paul", rota: ["Monday", "Tuesday"] },
-    { name: "sally", rota: ["Monday", "Tuesday"] },
-    { name: "jess", rota: ["Monday", "Tuesday"] },
-  ];
-  expect(areWeCovered(staff, "Wednesday")).toBe(false);
+describe("areWeCovered", () => {
+  test("throws if staff not provided", () => {
+    expect(() => areWeCovered()).toThrow("staff is required");
+  });
+
+  test("throws if day not provided", () => {
+    const staff = [];
+    expect(() => areWeCovered(staff)).toThrow("day is required");
+  });
+
+  test("returns false if there are staff but < 3 scheduled to work", () => {
+    const staff = [
+      { name: "gary", rota: ["Monday", "Tuesday"] },
+      { name: "paul", rota: ["Monday", "Tuesday"] },
+      { name: "sally", rota: ["Monday", "Tuesday"] },
+      { name: "jess", rota: ["Monday", "Tuesday"] },
+    ];
+    expect(areWeCovered(staff, "Wednesday")).toBe(false);
+  });
+
+  test("returns true if enough staff for day", () => {
+    const staff = [
+      { name: "gary", rota: ["Monday", "Tuesday"] },
+      { name: "paul", rota: ["Monday", "Tuesday"] },
+      { name: "sally", rota: ["Monday", "Tuesday"] },
+      { name: "jess", rota: ["Monday", "Tuesday"] },
+    ];
+    expect(areWeCovered(staff, "Monday")).toBe(true);
+  });
+
+  test("returns true for exact minimum staff needed", () => {
+    const staff = [
+      { name: "gary", rota: ["Monday", "Tuesday"] },
+      { name: "paul", rota: ["Monday", "Tuesday"] },
+      { name: "sally", rota: ["Monday", "Tuesday"] },
+      { name: "jess", rota: ["Monday", "Wednesday"] },
+    ];
+    expect(areWeCovered(staff, "Tuesday")).toBe(true);
+  });
 });
