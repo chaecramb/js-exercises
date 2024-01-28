@@ -2,6 +2,7 @@ import {
   sumMultiples,
   createMatrix,
   areWeCovered,
+  isValidDNA,
 } from "../challenges/exercise5";
 
 describe("sumMultiples", () => {
@@ -26,6 +27,18 @@ describe("sumMultiples", () => {
 
   test("it works with decimals", () => {
     expect(sumMultiples([1, 40.0, 8.05, 12.0])).toBe(52);
+  });
+});
+
+describe("isValidDNA", () => {
+  it("throw an error when not passed a string", () => {
+    expect(() => {
+      isValidDNA();
+    }).toThrow("str is required");
+
+    expect(() => {
+      isValidDNA(1);
+    }).toThrow("str is required");
   });
 });
 
