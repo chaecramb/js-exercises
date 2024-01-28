@@ -53,3 +53,48 @@ describe("createRange", () => {
     expect(createRange(5, 5)).toEqual([5]);
   });
 });
+
+describe("getScreentimeAlertList", () => {
+  test("throws error if no users provided", () => {
+    expect(() => {
+      getScreentimeAlertList();
+    }).toThrow("users is required");
+  });
+
+  test("throws error if no date provided", () => {
+    expect(() => {
+      getScreentimeAlertList([]);
+    }).toThrow("date is required");
+  });
+
+  test("returns usernames exceeding screentime limit for given date", () => {
+    const users = [
+      {
+        username: "user1",
+        screenTime: [
+          { date: "2023-01-28", usage: { app1: 50, app2: 60 } },
+          { date: "2023-01-29", usage: { app1: 20, app2: 80 } },
+        ],
+      },
+      {
+        username: "user2",
+        screenTime: [{ date: "2023-01-28", usage: { app1: 10, app2: 20 } }],
+      },
+    ];
+    expect(getScreentimeAlertList(users, "2023-01-28")).toEqual(["user1"]);
+  });
+
+  test("returns empty array if no users exceed screentime limit for given date", () => {
+    const users = [
+      {
+        username: "user1",
+        screenTime: [{ date: "2023-01-28", usage: { app1: 50, app2: 40 } }],
+      },
+      {
+        username: "user2",
+        screenTime: [{ date: "2023-01-28", usage: { app1: 10, app2: 20 } }],
+      },
+    ];
+    expect(getScreentimeAlertList(users, "2023-01-28")).toEqual([]);
+  });
+});
